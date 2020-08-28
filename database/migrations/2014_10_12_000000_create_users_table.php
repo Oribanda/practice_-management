@@ -22,10 +22,6 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->text('avter');
             $table->text('introduce');
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('class');
-            $table->unsignedBigInteger('practice_id');
-            $table->foreign('practice_id')->references('id')->on('practice');
             $table->rememberToken();
             $table->timestamps();
         });

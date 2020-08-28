@@ -20,8 +20,7 @@ class CreateAdminTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('avter');
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('class');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -23,11 +23,19 @@ class CreatePracticeTable extends Migration
             $table->integer('falsetto_times');
             $table->string('practice_song');
             $table->text('other');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->unsignedBigInteger('songs_id');
-            $table->foreign('songs_id')->references('id')->on('songs');
+            $table->integer('users_id')->unsigned();
+            $table->integer('songs_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('users_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('songs_id')
+                ->references('id')
+                ->on('songs')
+                ->onDelete('cascade');
         });
     }
 

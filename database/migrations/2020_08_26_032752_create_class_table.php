@@ -18,11 +18,20 @@ class CreateClassTable extends Migration
             $table->string('class_name');
             $table->integer('member');
             $table->text('avter');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->unsignedBigInteger('admin_id');
-            $table->foreign('admin_id')->references('id')->on('admin');
+            $table->integer('users_id')->unsigned();
+            $table->integer('users_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('users_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('admin_id')
+                ->references('id')
+                ->on('admin')
+                ->onDelete('cascade');
+
         });
     }
 
