@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTempoTable extends Migration
+class CreateBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTempoTable extends Migration
      */
     public function up()
     {
-        Schema::create('tempo', function (Blueprint $table) {
-            $table->id();
-            $table->string('ballade');
-            $table->string('middle');
-            $table->string('up-tempo');
+        Schema::create('songs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('song_name');
+            $table->string('artist_name');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTempoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tempo');
+        Schema::dropIfExists('songs');
     }
 }

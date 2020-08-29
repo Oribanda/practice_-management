@@ -14,7 +14,7 @@ class CreatePracticeTable extends Migration
     public function up()
     {
         Schema::create('practice', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('practice_time');
             $table->string('bass_key');
             $table->integer('bass_times');
@@ -22,12 +22,13 @@ class CreatePracticeTable extends Migration
             $table->integer('stretch_times');
             $table->integer('falsetto_times');
             $table->string('practice_song');
+            $table->string('practice_artist');
             $table->text('other');
-            $table->integer('users_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->integer('songs_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('users_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');

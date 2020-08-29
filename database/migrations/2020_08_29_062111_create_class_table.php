@@ -14,15 +14,15 @@ class CreateClassTable extends Migration
     public function up()
     {
         Schema::create('class', function (Blueprint $table) {
-            $table->id();
-            $table->string('class_name');
+            $table->increments('id');
+            $table->string('name');
             $table->integer('member');
             $table->text('avter');
-            $table->integer('users_id')->unsigned();
-            $table->integer('users_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('admin_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('users_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
@@ -31,10 +31,8 @@ class CreateClassTable extends Migration
                 ->references('id')
                 ->on('admin')
                 ->onDelete('cascade');
-
         });
     }
-
     /**
      * Reverse the migrations.
      *
