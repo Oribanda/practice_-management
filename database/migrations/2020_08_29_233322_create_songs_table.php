@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBooksTable extends Migration
+class CreateSongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,10 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->string('song_name');
             $table->string('artist_name');
+            $table->integer('key_id');
+            $table->integer('genre_id');
+            $table->integer('tempo_id');
+            $table->integer('gender_id');
             $table->timestamps();
         });
     }
