@@ -33,6 +33,7 @@ class CreateClassTable extends Migration
                 ->onDelete('cascade');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -41,5 +42,6 @@ class CreateClassTable extends Migration
     public function down()
     {
         Schema::dropIfExists('class');
+
     }
 }
