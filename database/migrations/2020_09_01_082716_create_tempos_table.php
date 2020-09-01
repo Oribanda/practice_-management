@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenreTable extends Migration
+class CreateTemposTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateGenreTable extends Migration
      */
     public function up()
     {
-        Schema::create('genre', function (Blueprint $table) {
+        Schema::create('tempos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jaz');
-            $table->string('rock');
-            $table->string('musical');
-            $table->string('R&B');
-            $table->string('pop');
-            $table->string('soul');
-            $table->string('funk');
+            $table->string('ballade');
+            $table->string('middle');
+            $table->string('up-tempo');
             $table->integer('song_id')->unsigned();
             $table->timestamps();
 
@@ -39,6 +35,6 @@ class CreateGenreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genre');
+        Schema::dropIfExists('tempos');
     }
 }
