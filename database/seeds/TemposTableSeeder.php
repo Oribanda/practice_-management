@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AdminTableSeeder extends Seeder
+class TemposTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+        DB::table('tempos')->truncate();
     }
 }
