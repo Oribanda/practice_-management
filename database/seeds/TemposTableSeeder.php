@@ -11,6 +11,23 @@ class TemposTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // テーブルのクリア
         DB::table('tempos')->truncate();
+
+        $tempos = [
+            [
+                'ballade' => '1',
+                'middle' => '2',
+                'up-tempo' => '3',
+                'song_id' => '1',
+            ]
+        ];
+
+
+        foreach ($tempos as $tempo) {
+            \App\Tempo::create($tempo);
+        }
     }
 }
