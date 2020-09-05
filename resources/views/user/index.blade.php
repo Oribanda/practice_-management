@@ -27,7 +27,7 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->avter }}</td>
+                    <td>{{ $user->avatar }}</td>
                     <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">

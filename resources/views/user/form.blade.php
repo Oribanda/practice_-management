@@ -20,11 +20,11 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" value="{{ $user->email }}">
+                        <input type="email" class="form-control" name="email" value="{{ $user->email }}">
                     </div>
                     <div class="form-group">
-                        <label for="avter">アバター</label>
-                        <input type="text" class="form-control" name="avter" value="{{ $user->avter }}">
+                        <label for="avatar">アバター</label>
+                        <input type="text" class="form-control" name="avatar" value="{{ $user->avatar }}">
                     </div>
                     <div class="form-group">
                         <label for="introduce">自己紹介</label>
@@ -32,7 +32,11 @@
                     </div>
                     <div class="form-group">
                         <label for="password">パスワード</label>
-                        <input type="text" class="form-control" name="password" value="{{ $user->password }}">
+                        <input type="password" class="form-control" name="password" value="{{ $user->password }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="password-confirm">確認用パスワード</label>
+                        <input type="password" class="form-control" name="password_confirmation" value="{{ $user->password_confirmation }}">
                     </div>
                     <button type="submit" class="btn btn-default">登録</button>
                     <a href="/user">戻る</a>

@@ -18,30 +18,57 @@ class UserRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
+     * Validationルール
      * @return array
      */
     public function rules()
     {
         return [
-            'name'      =>['required', 'string'], // 必須
-            'email'     => ['required', 'string', 'regex:|^[0-9a-z_./?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$|', ], //必須
-            'password'  => ['required', 'string', 'min:8', 'max:8', 'regex:/^(?=.*?[a-z])(?=.*?\d)[a-z\d]+$/i',], // 必須
-            'introduce' => ['nullable', 'text', 'max:100'],
-            // 'avter'     => 'file|image|max:10000',
-            // 'image'    => 'file|image|max:10000', // 画像チェック, 10MB以内
+            'name'      =>'required', // 必須
+            'email'     => 'required|email', //必須
+            'introduce' => 'nullable|max:100', //必須では無い。
+            'password' => 'required|min:8', //必須
+            'password_confirmation' => 'required|min:8', //必須
+            'avatar'     => 'nullable|file|image|max:10000', // 画像チェック, 10MB以内
         ];
     }
 
-    //[ *3.追加：Validationメッセージを設定（省略可） ]
+    /**
+     * 項目名
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => '名前',
+            'email' => 'E-mail',
+            'password' => 'パスワード',
+            'password_confirmation' => '確認用パスワード',
+            'introduce' => '自己紹介文',
+            'avatar' => 'アイコン画像',
+        ];
+    }
+
+    /**
+     * エラーメッセージ
+     *
+     * @return array
+     */
+    //[ 追加：Validationメッセージを設定（省略可） ]
     //function名は必ず「messages」となります。
     public function messages()
     {
         return [
-            'name'  => '名前を入力してください。',
-            'email'       => 'メールアドレスを入力してください。',
-            'introduce'       => '文章はは100字以内で入力して下さい。',
-            'password' => 'パスワードは8文字以上で入力してください。',
+            'name.required'  => ':attributeは必須項目です。',
+            'email.required'       => ':attributeは必須項目です。',
+            'email.email' => ':attributeはメールアドレスの形式で入力してください。',
+            'introduce.max:100'       => ':attributeは100字以内で入力して下さい。',
+            'password.required'       => ':attributeは必須項目です。',
+            'password.min' => ':attributeは8文字以上で入力してください。',
+            'password_confirmation.required' => ':attributeは必須項目です。',
+            'password_confirmation.min' => ':attributeは8文字以上で入力してください。',
+            'avatar.max' => ':attributeは10MB以内にして下さい',
         ];
     }
 }
