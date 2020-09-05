@@ -30,11 +30,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->birthday = $request->birthday;
         $user->introduce = $request->introduce;
-        $user->avter = $request->avter;
+        $user->avatar = $request->avatar;
         $user->password = $request->password;
-        // $user->password-confirm = $request->password-confirm;
+        $user->password_confirmation = $request->password_confirmation;
         $user->save();
 
         return redirect("/user");
@@ -60,11 +59,10 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->birthday = $request->birthday;
-        $user->avter = $request->avter;
+        $user->avatar = $request->avatar;
         $user->introduce = $request->introduce;
         $user->password = $request->password;
-        // $user->password - confirm = $request->password - confirm;
+        $user->password_confirmation = $request->password_confirmation;
         $user->save();
 
         return redirect("/user");
