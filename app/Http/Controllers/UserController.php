@@ -30,7 +30,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->birthday = $request->birthday;
         $user->introduce = $request->introduce;
         $user->avter = $request->avter;
         $user->password = $request->password;
@@ -60,7 +59,6 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->birthday = $request->birthday;
         $user->avter = $request->avter;
         $user->introduce = $request->introduce;
         $user->password = $request->password;

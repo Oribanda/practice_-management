@@ -17,7 +17,6 @@
                     <th class="text-center">ID</th>
                     <th class="text-center">名前</th>
                     <th class="text-center">Email</th>
-                    <th class="text-center">生年月日</th>
                     <th class="text-center">アバター</th>
                     <th class="text-center">自己紹介</th>
                 </tr>
@@ -28,7 +27,6 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->birthday }}</td>
                     <td>{{ $user->avter }}</td>
                     <td>{{ $user->introduce }}</td>
                     <td>

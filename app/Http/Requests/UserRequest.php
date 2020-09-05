@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true; //[ 変更：default=false ]
     }
 
     /**
@@ -24,13 +24,24 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required', // 必須
-            'email'     => 'email', //メールアドレスチェック
-            'birthday'  => 'nullable|integer', //必須, 文字列
-            'password'  => 'required', // 必須
+            'name'      =>['required', 'string'], // 必須
+            'email'     => ['required', 'string', 'regex:|^[0-9a-z_./?-]+@([0-9a-z-]+\.)+[0-9a-z-]+$|', ], //必須
+            'password'  => ['required', 'string', 'min:8', 'max:8', 'regex:/^(?=.*?[a-z])(?=.*?\d)[a-z\d]+$/i',], // 必須
+            'introduce' => ['nullable', 'text', 'max:100'],
             // 'avter'     => 'file|image|max:10000',
             // 'image'    => 'file|image|max:10000', // 画像チェック, 10MB以内
-            'introduce' => 'nullable|text|max:500',
+        ];
+    }
+
+    //[ *3.追加：Validationメッセージを設定（省略可） ]
+    //function名は必ず「messages」となります。
+    public function messages()
+    {
+        return [
+            'name'  => '名前を入力してください。',
+            'email'       => 'メールアドレスを入力してください。',
+            'introduce'       => '文章はは100字以内で入力して下さい。',
+            'password' => 'パスワードは8文字以上で入力してください。',
         ];
     }
 }
