@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UserController extends Controller
@@ -13,7 +13,7 @@ class UserController extends Controller
         // DBよりUserテーブルの値全てを取得
         $users = User::all();
 
-        // 取得した値をビュー「book/index」に渡す
+        // 取得した値をビュー「user/index」に渡す
         return view('user/index', compact('users'));
     }
 
@@ -23,5 +23,50 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         return view('user/edit', compact('user'));
+    }
+
+    public function update(UserRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->introduce = $request->introduce;
+        $user->avter = $request->avter;
+        $user->password = $request->password;
+        // $user->password-confirm = $request->password-confirm;
+        $user->save();
+
+        return redirect("/user");
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect("/user");
+    }
+
+    public function create()
+    {
+        // 空の$userを渡す。変数を渡さないとUndefined Variableエラーになる。
+        $user = new User();
+        return view('user/create', compact('user'));
+    }
+
+    public function store(UserRequest $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->avter = $request->avter;
+        $user->introduce = $request->introduce;
+        $user->password = $request->password;
+        // $user->password - confirm = $request->password - confirm;
+        $user->save();
+
+        return redirect("/user");
     }
 }
