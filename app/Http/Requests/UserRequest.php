@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
             'password' => 'パスワード',
             'password_confirmation' => '確認用パスワード',
             'introduce' => '自己紹介文',
-            'avatar' => 'アイコン画像',
+            'avatar' => 'プロフィール画像',
         ];
     }
 

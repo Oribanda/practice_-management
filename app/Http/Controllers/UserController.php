@@ -67,4 +67,12 @@ class UserController extends Controller
 
         return redirect("/user");
     }
+
+    /**
+     * ファイルアップロード処理
+     */
+    public function upload(UserRequest $request)
+    {
+
+    }
 }

@@ -24,7 +24,10 @@
                     </div>
                     <div class="form-group">
                         <label for="avatar">アバター</label>
-                        <input type="text" class="form-control" name="avatar" value="{{ $user->avatar }}">
+                        <form method="POST" action="/upload" enctype="multipart/form-data">
+                            <input type="file" id="avatar" class="form-control" name="avatar" value="{{ $user->avatar }}">
+                            <button type="submit">アップロード</button>
+                        </form>
                     </div>
                     <div class="form-group">
                         <label for="introduce">自己紹介</label>
