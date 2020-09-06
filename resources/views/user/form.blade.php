@@ -10,7 +10,7 @@
             <form action="/user" method="post">
                 @include('user/message')
                 @elseif($target == 'update')
-                <form action="/user/{{ $user->id }}" method="post">
+                <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
                     @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -24,10 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label for="avatar">アバター</label>
-                        <form method="POST" action="/upload" enctype="multipart/form-data">
-                            <input type="file" id="avatar" class="form-control" name="avatar" value="{{ $user->avatar }}">
-                            <button type="submit">アップロード</button>
-                        </form>
+                            <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
                     </div>
                     <div class="form-group">
                         <label for="introduce">自己紹介</label>
