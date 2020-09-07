@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                     ['name' => 'Test',
                     'email' => 'test@test',
                     'password' => 'testTest',
+                    'password_confirmation' => 'testTest',
                     'avatar' => '',
                     'introduce' => 'こんにちわ']
                     ];
