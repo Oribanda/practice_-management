@@ -25,13 +25,15 @@ class UserController extends Controller
         return view('user/edit', compact('user'));
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, $id, $avatar)
     {
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->introduce = $request->introduce;
         $user->avatar = $request->avatar;
+        $filePath = $avatar->store('public');
+        $user->avatar = str_replace('public/', '', $filePath);
         $user->password = $request->password;
         $user->password_confirmation = $request->password_confirmation;
         $user->save();
@@ -68,11 +70,4 @@ class UserController extends Controller
         return redirect("/user");
     }
 
-    /**
-     * ファイルアップロード処理
-     */
-    public function upload(UserRequest $request)
-    {
-
-    }
 }
