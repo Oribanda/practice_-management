@@ -7,10 +7,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
             @if($target == 'store')
-            <form action="/user" method="post">
+            <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data">
                 @include('user/message')
                 @elseif($target == 'update')
-                <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
                     @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -25,7 +24,7 @@
                     <div class="form-group">
                         <label for="avatar">アバター</label>
                         <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
-                        @if($user->avatar == null)
+                        @if($user->image == null)
                         <img src="/storage/noimage.png">
                         @else
                         <img type="file" class="form-control" name="avatar" src="/storage/{{$user->avatar}}">
@@ -33,11 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="introduce">自己紹介</label>
-                        @if($user->introduce == null)
-                        <input type="text" class="form-control" name="introduce">
-                        @else
                         <input type="text" class="form-control" name="introduce" value="{{ $user->introduce }}">
-                        @endif
                     </div>
                     <div class="form-group">
                         <label for="password">パスワード</label>

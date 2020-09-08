@@ -23,4 +23,5 @@ Route::resource('user', 'UserController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('log_test', 'LogTestController@index');
 
