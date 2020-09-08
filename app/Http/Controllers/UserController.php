@@ -32,8 +32,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->introduce = $request->introduce;
         $user->avatar = $request->avatar;
-        $filePath = $avatar->store('public');
-        $user->avatar = str_replace('public/', '', $filePath);
         $user->password = $request->password;
         $user->password_confirmation = $request->password_confirmation;
         $user->save();
@@ -62,7 +60,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->avatar = $request->avatar;
-        $user->introduce = $request->introduce;
+        $user->introduce = $request->nullable();
         $user->password = $request->password;
         $user->password_confirmation = $request->password_confirmation;
         $user->save();
@@ -70,4 +68,13 @@ class UserController extends Controller
         return redirect("/user");
     }
 
+
+    public function image(UserRequest $request, User $user) {
+        $avatar = $request->user_image;
+
+        $filePath = $avatar->store('public');
+        $user->avatar = str_replace('public/', '', $filePath);
+        $user->save();
+        return redirect("/user/{$user->id}")->with('user', $user);
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,24 +13,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        // テーブルのクリア
-        DB::table('users')->truncate();
-
-        $users = [
-                    ['name' => 'Test',
-                    'email' => 'test@test',
-                    'password' => 'testTest',
-                    'password_confirmation' => 'testTest',
-                    'avatar' => '',
-                    'introduce' => 'こんにちわ']
-                    ];
-
-
-        foreach($users as $user) {
-            \App\User::create($user);
-        }
+        DB::table('users')->insert([
+            'name' => 'testuser',
+            'email' => 'testuser@example.com',
+            'password' => bcrypt('testuser0123'),
+            'introduce' => 'こんにちわ',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }

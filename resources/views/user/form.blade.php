@@ -33,7 +33,11 @@
                     </div>
                     <div class="form-group">
                         <label for="introduce">自己紹介</label>
+                        @if($user->introduce == null)
+                        <input type="text" class="form-control" name="introduce">
+                        @else
                         <input type="text" class="form-control" name="introduce" value="{{ $user->introduce }}">
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="password">パスワード</label>
