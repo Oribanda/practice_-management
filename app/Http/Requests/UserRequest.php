@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use phpDocumentor\Reflection\Types\Nullable;
 
 class UserRequest extends FormRequest
 {
@@ -31,7 +30,7 @@ class UserRequest extends FormRequest
             'password' => 'required|min:8', //必須
             'password_confirmation' => 'required|min:8', //必須
             'avatar'     => 'nullable|file|max:10000', // 画像チェック, 10MB以内
-            'avatar'  => 'nullable',
+            'avatar'  => 'nullable|file|image|max:10000',
         ];
     }
 

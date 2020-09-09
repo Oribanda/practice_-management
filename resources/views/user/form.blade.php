@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="avatar">アバター</label>
-                    <input type="file" class="form-control" name="avatar" id="avatar" src="/storage/{{ $user->avatar }}">
+                    <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
                     <!-- @if($user->image == null)
                     <img src="/storage/noimage.png">
                     @else
