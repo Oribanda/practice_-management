@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Whoops\RunInterface;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('log_test', 'LogTestController@index');
+
 

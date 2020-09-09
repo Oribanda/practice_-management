@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+// use App\Http\Controllers\Requests\Request;
 use App\User;
 
 
@@ -51,6 +52,7 @@ class UserController extends Controller
 
     public function create()
     {
+
         // 空の$userを渡す。変数を渡さないとUndefined Variableエラーになる。
         $user = new User();
         return view('user/create', compact('user'));
@@ -59,11 +61,10 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         // 画像を保存する処理
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->avatar = $this->saveImage($request->avatar);
+        $user->avatar = $request->avatar;
         $user->introduce = $request->nullable();
         $user->password = $request->password;
         // $user->password_confirmation = $request->password_confirmation;
@@ -72,19 +73,19 @@ class UserController extends Controller
         return redirect("/user");
     }
 
-    public function saveImage($request_image)
-    {
-        $file_path = $request_image->store('public', $request_image);
-        $file_path = str_replace('public/', '', $file_path);
-        return $file_path;
-    }
+    // public function saveImage($request_image)
+    // {
+    //     $file_path = $request_image->store('public', $request_image);
+    //     $file_path = str_replace('public/', '', $file_path);
+    //     return $file_path;
+    // }
 
-    public function image(UserRequest $request, User $user)
-    {
-        $avatar = $request->user_avatar;
-        $filePath = $avatar->store('public');
-        $user->avatar = str_replace('public/', '', $filePath);
-        $user->save();
-        return redirect("/user/{$user->id}")->with('user', $user);
-    }
+    // public function image(UserRequest $request, User $user)
+    // {
+    //     $avatar = $request->user_avatar;
+    //     $file_path = $avatar->store('public');
+    //     $user->avatar = str_replace('public/', '', $file_path);
+    //     $user->save();
+    //     return redirect("/user/{$user->id}")->with('user', $user);
+    // }
 }
