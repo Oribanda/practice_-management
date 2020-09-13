@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="avatar">アバター</label>
-                    <input type="file" class="form-control" name="file" value="{{ $user->avatar }}">
+                    <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
                 </div>
                 <div class="form-group">
                     <label for="introduce">自己紹介</label>
