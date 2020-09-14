@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
             @if($target == 'store')
-            <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data">
+            <form action="/user/{{ $user->id }}" action="/api/upload" method="post" enctype="multipart/form-data">
                 @csrf
                 @include('user/message')
                 @elseif($target == 'update')
@@ -25,6 +25,11 @@
                 <div class="form-group">
                     <label for="avatar">アバター</label>
                     <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
+                    @if($user->image == null)
+                    <img src="/storage/noimage.png">
+                    @else
+                    <img src="/storage/{{$user->image}}">
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="introduce">自己紹介</label>
