@@ -25,11 +25,11 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        $file_path = $request->file->store('app/public/images');
-        // public/imageshogehogeoghoe.jpgみたいな名前になるので、public/images/を消す
-        $file_name = str_replace('app/public/images/', '', $file_path);
-        // $file_nameをDBに保存
-        var_dump($file_name);
+        // $file_path = $request->file->store('public/images');
+        // // public/imageshogehogeoghoe.jpgみたいな名前になるので、public/images/を消す
+        // $file_name = str_replace('public/images/', '', $file_path);
+        // // $file_nameをDBに保存
+        // var_dump($file_name);
     }
 
     /**

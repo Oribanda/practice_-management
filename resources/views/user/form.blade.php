@@ -25,11 +25,12 @@
                 <div class="form-group">
                     <label for="avatar">アバター</label>
                     <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
-                    @if($user->image == null)
+                    <img src="/avatars/{{ $user->file_name }}">
+                    <!-- @if($user->image == null)
                     <img src="/storage/noimage.png">
                     @else
-                    <img src="/storage/{{$user->image}}">
-                    @endif
+                    <img src="/avatars/{{ $user->file_name }}">
+                    @endif -->
                 </div>
                 <div class="form-group">
                     <label for="introduce">自己紹介</label>
