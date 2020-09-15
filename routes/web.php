@@ -18,18 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('user', 'UserController@index');
 Route::resource('user', 'UserController');
 
 
 // Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('log_test', 'LogTestController@index');
-
-// Route::get('/', 'UserController@index');
-// Route::post('/store', [
-//     'as' => 'store', 'uses' => 'UserController@store'
-// ]);
-
-// Route::get('/form', 'UserController@index');
