@@ -25,8 +25,6 @@
                 <div class="form-group">
                     <label for="avatar">アバター</label>
                     <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
-                    <!-- <img src="/public/images/{{ $user->avatar }}"> -->
-                    <img src="{{ asset('storage/' . $user->avatar ) }}">
                 </div>
                 <div class="form-group">
                     <label for="introduce">自己紹介</label>
