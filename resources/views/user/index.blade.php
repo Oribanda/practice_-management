@@ -27,11 +27,8 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <!-- <td>{{ $user->avatar }}</td> -->
-                    <td><img src="/public/" {{ $user->avatar }}></td>
-                    <!-- <td><img src="/Users/takuya/my-projects/practice_management/public/storage/images/kJTyUGO6cKOqgWgjBwldwKkdJc8yY6mnkHJomeKw.png"></td> -->
-                    <!-- <td><img src="../../../public/storage/images/kJTyUGO6cKOqgWgjBwldwKkdJc8yY6mnkHJomeKw.png"></td> -->
-                    <!-- <td><img src="../../../storage/public/images/kJTyUGO6cKOqgWgjBwldwKkdJc8yY6mnkHJomeKw.png"></td> -->
+                    <!-- <td><img src="../../../storage/images/HMDdHmCEnDJKZ13MRGddytGZlVDAZovthnjExCAW.jpeg"></td> -->
+                    <td><img src="../../../storage/images/{{ $user->avatar , 'file_name' }}"></td>
                     <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">

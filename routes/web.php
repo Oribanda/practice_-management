@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 
-Route::get('/public/storage', 'UserController@index');
+
 
 
 
