@@ -53,8 +53,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = $request->password;
         $user->avatar = $request->avatar;
-        // $user->avatar = $file->getClientOriginalName();
-        // $request->file('upload_file');
         $user->introduce = $request->introduce;
         $user->save();
 
@@ -64,18 +62,9 @@ class UserController extends Controller
         $file_name = str_replace('public/images/', '', $file_path);
         // $file_nameをDBに保存
         var_dump($file_name);
+        // User::create(['file_name' => basename($file_name)]);
 
         return redirect("user");
-    }
-
-    public function upload(Request $request)
-    {
-        // /storage/public/imagesが作成される
-        $file_path = $request->avatar->store('public/images');
-        // public/imageshogehogeoghoe.jpgみたいな名前になるので、public/images/を消す
-        $file_name = str_replace('public/images/', '', $file_path);
-        // $file_nameをDBに保存
-        var_dump($file_name);
     }
 
 }
