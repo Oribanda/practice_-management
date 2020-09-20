@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Whoops\RunInterface;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 
+
+
+
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

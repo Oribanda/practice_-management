@@ -7,7 +7,7 @@
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="ops-title">登録情報一覧</h3>
+            <h3 class="ops-title">ユーザー一覧</h3>
         </div>
     </div>
     <div class="row">
@@ -27,7 +27,11 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->avatar }}</td>
+                    @if($user->avatar == null)
+                    <td><img src="../../../storage/images/noImage.png"></td>
+                    @else
+                    <td><img src="../../../storage/images/{{ $user->avatar }}"></td>
+                    @endif
                     <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">

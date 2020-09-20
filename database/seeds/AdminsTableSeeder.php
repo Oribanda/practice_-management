@@ -21,7 +21,8 @@ class AdminsTableSeeder extends Seeder
                 'name' => 'TestAdmin',
                 'email' => 'testAdmin@test',
                 'password' => 'adminAdmin',
-                'avter' => 'null',
+                'password_confirmation' => 'adminAdmin',
+                'avatar' => '',
             ]
         ];
 

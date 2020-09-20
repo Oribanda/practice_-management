@@ -17,7 +17,7 @@ class CreateClassesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('member');
-            $table->text('avter');
+            $table->string('avatar')->default('user.jpg');
             $table->integer('user_id')->unsigned();
             $table->integer('admin_id')->unsigned();
             $table->timestamps();

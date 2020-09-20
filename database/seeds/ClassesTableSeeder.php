@@ -20,7 +20,7 @@ class ClassesTableSeeder extends Seeder
             [
                 'name' => 'TestClass',
                 'member' => 1,
-                'avter' => 'null',
+                'avatar' => '',
                 'user_id' => 1,
                 'admin_id' => 1,
             ]
