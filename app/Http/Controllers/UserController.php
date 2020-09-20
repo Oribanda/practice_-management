@@ -57,19 +57,16 @@ class UserController extends Controller
 
         // /storage/public/imagesが作成される
         $file_path = $request->avatar->store('public/images');
-        // public/imageshogehogeoghoe.jpgみたいな名前になるので、public/images/を消す
-        // $file_name = str_replace('public/images/', '', $file_path);
-        $file_name = str_replace('storage/images', '', $file_path);
+        // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
+        $file_name = str_replace('public/images', '', $file_path);
         // $file_nameをDBに保存
-        // var_dump($file_name);
-        $file_name = array();
-        $file_name['file_name'] = 'file_name';
-        // User::create(['file_name' => basename($file_name)]);
+        $user->avatar = $file_name;
+
 
 
         $user->save();
 
-        // return redirect("/user/{$user->id}")->with('user', $user);
+
         return redirect("user");
     }
 

@@ -27,8 +27,11 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <!-- <td><img src="../../../storage/images/HMDdHmCEnDJKZ13MRGddytGZlVDAZovthnjExCAW.jpeg"></td> -->
-                    <td><img src="../../../storage/images/{{ $user->avatar , 'file_name' }}"></td>
+                    @if($user->avatar == null)
+                    <td><img src="../../../storage/images/noImage.png"></td>
+                    @else
+                    <td><img src="../../../storage/images/{{ $user->avatar }}"></td>
+                    @endif
                     <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">
