@@ -36,6 +36,8 @@ class UserController extends Controller
         $user->password = $request->password;
         $user->avatar = $request->avatar;
         $user->introduce = $request->introduce;
+
+        return redirect("/index");
     }
 
     public function destroy($id)
@@ -48,6 +50,30 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'name'       => 'required|string|max:50',
+            'email'      => 'required|email',
+            'password'   => 'required|confirmed|min:8|max:8|confirmed',
+            'password_confirmation' => 'required',
+            'avatar'     => 'nullable|file|image|max:10000',
+            'introduce'  => 'nullable|string|max:300',
+        ];
+
+        $messages = [
+            'name.required'     => '名前を入力して下さい。',
+            'name.max'          => '名前は:max文字以内で入力して下さい。',
+            'email.required'    => 'メールアドレスを入力して下さい。',
+            'email.email'       => '正しいメールアドレスを入力して下さい。',
+            'password.required' => 'パスワードを入力して下さい。',
+            'password.min'      => 'パスワードは:min文字以上で入力して下さい。',
+            'password.max'      => 'パスワードは:max文字以内で入力して下さい。',
+            'confirmed'        => ':attributeと、パスワードが一致していません。',
+            'introduce.max'         => '文章は:max文字以内で入力して下さい。',
+        ];
+
+        $validator = validator($request->all(), $rules, $messages);
+        $validated = $validator->validate();
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -67,7 +93,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect("user");
+        return redirect("user")->with(['validated'=>$validated]);
     }
 
 }
