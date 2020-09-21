@@ -28,9 +28,9 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     @if($user->avatar == null)
-                    <td><img src="../../../storage/images/noImage.png"></td>
+                    <td><img src="../../../storage/images/noimage.png{{ $user->avatar }}" width="200" height="130"></td>
                     @else
-                    <td><img src="../../../storage/images/{{ $user->avatar }}"></td>
+                    <td><img src="../../../storage/images/{{ $user->avatar }}" width="200" height="130"></td>
                     @endif
                     <td>{{ $user->introduce }}</td>
                     <td>

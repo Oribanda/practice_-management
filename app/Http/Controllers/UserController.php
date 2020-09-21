@@ -67,8 +67,10 @@ class UserController extends Controller
             'password.required' => 'パスワードを入力して下さい。',
             'password.min'      => 'パスワードは:min文字以上で入力して下さい。',
             'password.max'      => 'パスワードは:max文字以内で入力して下さい。',
-            'confirmed'        => ':attributeと、パスワードが一致していません。',
-            'introduce.max'         => '文章は:max文字以内で入力して下さい。',
+            'confirmed'         => ':attributeと、パスワードが一致していません。',
+            'avatar.image'            => 'アバターは:imageを選択して下さい。',
+            'avatar.max'            => 'アバターは:max以下の画像ファイルを選択して下さい。',
+            'introduce.max'     => '文章は:max文字以内で入力して下さい。',
         ];
 
         $validator = validator($request->all(), $rules, $messages);
@@ -94,6 +96,7 @@ class UserController extends Controller
 
 
         return redirect("user")->with(['validated'=>$validated]);
+        // return redirect("user");
     }
 
 }

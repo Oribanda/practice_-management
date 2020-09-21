@@ -18,17 +18,15 @@ class AdminsTableSeeder extends Seeder
 
         $admins = [
             [
-                'name' => 'TestAdmin',
-                'email' => 'testAdmin@test',
-                'password' => 'adminAdmin',
-                'password_confirmation' => 'adminAdmin',
-                'avatar' => '',
+                'name' => 'testAdmin',
+                'email' => 'testAdmin@testAdmin.com',
+                'password' => 'aaaa5555',
+                'avatar' => 'noimage.png',
             ]
         ];
 
-
         foreach ($admins as $admin) {
-            \App\Admin::create($admin);
+            \App\Models\Admin::create($admin);
         }
     }
 }
