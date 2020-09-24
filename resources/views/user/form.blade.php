@@ -7,12 +7,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
             @if($target == 'store')
+            <form action="/user" method="post" enctype="multipart/form-data">
+            @csrf
+            @include('user/message')
+            @elseif($target == 'update')
             <form action="/user/{{ $user->id }}" method="post" enctype="multipart/form-data">
-                @csrf
-                @include('user/message')
-                @elseif($target == 'update')
                 <input type="hidden" name="_method" value="PUT">
-                @endif
+            @endif
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name">名前</label>

@@ -18,6 +18,7 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
+
         return view('user/create', compact('user'));
     }
 
@@ -30,14 +31,28 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        // \Log::info($user);
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->avatar = $request->avatar;
         $user->introduce = $request->introduce;
 
-        return redirect("/index");
+        if ($request->avatar == null) {
+
+            // avatarが選択されていない場合
+
+        } else {
+            // /storage/public/imagesが作成される
+            $file_path = $request->avatar->store('public/images');
+            // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
+            $file_name = str_replace('public/images', '', $file_path);
+            // $file_nameをDBに保存
+            $user->avatar = $file_name;
+        }
+        $user->save();
+
+        return redirect("/user");
     }
 
     public function destroy($id)
@@ -83,9 +98,11 @@ class UserController extends Controller
         $user->introduce = $request->introduce;
 
         if ($request->avatar == null){
+
             // avatarが選択されていない場合
 
-        } else {// /storage/public/imagesが作成される
+        } else {
+            // /storage/public/imagesが作成される
             $file_path = $request->avatar->store('public/images');
             // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
             $file_name = str_replace('public/images', '', $file_path);
@@ -94,7 +111,6 @@ class UserController extends Controller
         }
 
         $user->save();
-
 
         return redirect("user")->with(['validated'=>$validated]);
     }
