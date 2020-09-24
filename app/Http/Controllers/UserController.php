@@ -60,7 +60,7 @@ class UserController extends Controller
             'introduce.max'     => '文章は:max文字以内で入力して下さい。',
         ];
 
-        $validator = validator($request->all(), $rules, $messages);
+        $validator = validator($request->except(['avatar']), $rules, $messages);
         $validated = $validator->validate();
 
         if ($request->avatar == null) {
@@ -91,12 +91,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'name'       => 'required|string|max:50',
-            'email'      => 'required|email',
-            'password'   => 'required|confirmed|min:8|max:8|confirmed',
-            'password_confirmation' => 'required',
-            'avatar'     => 'nullable|file|image|max:10000',
-            'introduce'  => 'nullable|string|max:300',
+            'name'                    => 'required|string|max:50',
+            'email'                   => 'required|email',
+            'password'                => 'required|confirmed|min:8|max:8|confirmed',
+            'password_confirmation'   => 'required',
+            'avatar'                  => 'nullable|file|image|max:10000',
+            'introduce'               => 'nullable|string|max:300',
         ];
 
         $messages = [
@@ -108,13 +108,14 @@ class UserController extends Controller
             'password.min'      => 'パスワードは:min文字以上で入力して下さい。',
             'password.max'      => 'パスワードは:max文字以内で入力して下さい。',
             'confirmed'         => ':attributeと、パスワードが一致していません。',
-            'avatar.image'            => 'アバターは:imageを選択して下さい。',
-            'avatar.max'            => 'アバターは:max以下の画像ファイルを選択して下さい。',
+            'avatar.image'      => 'アバターは:imageを選択して下さい。',
+            'avatar.max'        => 'アバターは:max以下の画像ファイルを選択して下さい。',
             'introduce.max'     => '文章は:max文字以内で入力して下さい。',
         ];
 
-        $validator = validator($request->all(), $rules, $messages);
+        $validator = validator($request->except(['avatar']), $rules, $messages);
         $validated = $validator->validate();
+
 
         $user = new User();
         $user->name = $request->name;
