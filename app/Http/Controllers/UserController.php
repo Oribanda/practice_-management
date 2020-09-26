@@ -96,6 +96,7 @@ class UserController extends Controller
             'password'                => 'required|confirmed|min:8|max:8|confirmed',
             'password_confirmation'   => 'required',
             'avatar'                  => 'nullable|file|image|max:10000',
+            // 'avatar'                  => 'nullable|file|image|max:10M',
             'introduce'               => 'nullable|string|max:300',
         ];
 
