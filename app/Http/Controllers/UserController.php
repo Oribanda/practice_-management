@@ -113,7 +113,7 @@ class UserController extends Controller
             'avatar.required'         => '画像はjpeg,png,jpgのいずれかの画像を選択して下さい。',
             'avatar.mimes'            => '画像はjpeg,png,jpgのいずれかの画像を選択して下さい。',
             'avatar.uploaded'         => '選択されたアバターは画像ファイルではありません。',
-            'avatar.max_size'              => '画像は:max以下の画像ファイルを選択して下さい。',
+            'avatar.max_size'         => '画像は:max以下の画像ファイルを選択して下さい。',
             'introduce.max'           => '文章は:max文字以内で入力して下さい。',
         ];
 
