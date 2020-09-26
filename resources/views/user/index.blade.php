@@ -1,5 +1,5 @@
 <head>
-    <title>Uesr Index</title>
+    <title>Practice Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 @extends('user/layout')
@@ -27,11 +27,7 @@
                     </td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    @if($user->avatar == null)
-                    <td><img src="../../../storage/images/noImage.png"></td>
-                    @else
-                    <td><img src="../../../storage/images/{{ $user->avatar }}"></td>
-                    @endif
+                    <td><img src="../../../storage/images/{{ $user->avatar }}" width="200" height="130"></td>
                     <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">

@@ -18,6 +18,7 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
+
         return view('user/create', compact('user'));
     }
 
@@ -34,8 +35,49 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->avatar = $request->avatar;
         $user->introduce = $request->introduce;
+
+        $rules = [
+            'name'       => 'required|string|max:50',
+            'email'      => 'required|email',
+            'password'   => 'required|confirmed|min:8|max:8|confirmed',
+            'password_confirmation' => 'required',
+            'avatar'     => 'nullable|file|image|max:10000',
+            'introduce'  => 'nullable|string|max:300',
+        ];
+
+        $messages = [
+            'name.required'     => '名前を入力して下さい。',
+            'name.max'          => '名前は:max文字以内で入力して下さい。',
+            'email.required'    => 'メールアドレスを入力して下さい。',
+            'email.email'       => '正しいメールアドレスを入力して下さい。',
+            'password.required' => 'パスワードを入力して下さい。',
+            'password.min'      => 'パスワードは:min文字以上で入力して下さい。',
+            'password.max'      => 'パスワードは:max文字以内で入力して下さい。',
+            'confirmed'         => ':attributeと、パスワードが一致していません。',
+            'avatar.image'            => 'アバターは:imageを選択して下さい。',
+            'avatar.max'            => 'アバターは:max以下の画像ファイルを選択して下さい。',
+            'introduce.max'     => '文章は:max文字以内で入力して下さい。',
+        ];
+
+        $validator = validator($request->except(['avatar']), $rules, $messages);
+        $validated = $validator->validate();
+
+        if ($request->avatar == null) {
+
+            // avatarが選択されていない場合
+
+        } else {
+            // /storage/public/imagesが作成される
+            $file_path = $request->avatar->store('public/images');
+            // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
+            $file_name = str_replace('public/images', '', $file_path);
+            // $file_nameをDBに保存
+            $user->avatar = $file_name;
+        }
+        $user->save();
+
+        return redirect("/user")->with(['validated' => $validated]);
     }
 
     public function destroy($id)
@@ -48,26 +90,59 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $rules = [
+            'name'                    => 'required|string|max:50',
+            'email'                   => 'required|email',
+            'password'                => 'required|confirmed|min:8|max:8|confirmed',
+            'password_confirmation'   => 'required',
+            // 'avatar'                  => 'nullable|file|image|max:10M',
+            'avatar'                  => 'required|file|mimes:jpeg,png,jpg|max_size:10M',
+            'introduce'               => 'nullable|string|max:300',
+        ];
+
+        $messages = [
+            'name.required'           => '名前を入力して下さい。',
+            'name.max'                => '名前は:max文字以内で入力して下さい。',
+            'email.required'          => 'メールアドレスを入力して下さい。',
+            'email.email'             => '正しいメールアドレスを入力して下さい。',
+            'password.required'       => 'パスワードを入力して下さい。',
+            'password.min'            => 'パスワードは:min文字以上で入力して下さい。',
+            'password.max'            => 'パスワードは:max文字以内で入力して下さい。',
+            'confirmed'               => 'パスワードと確認用パスワードが一致していません。',
+            'required'                => '確認用パスワードを入力して下さい。',
+            'avatar.required'         => '画像はjpeg,png,jpgのいずれかの画像を選択して下さい。',
+            'avatar.mimes'            => '画像はjpeg,png,jpgのいずれかの画像を選択して下さい。',
+            'avatar.uploaded'         => '選択されたアバターは画像ファイルではありません。',
+            'avatar.max_size'              => '画像は:max以下の画像ファイルを選択して下さい。',
+            'introduce.max'           => '文章は:max文字以内で入力して下さい。',
+        ];
+
+        $validator = validator($request->except(['avatar','$data']), $rules, $messages);
+        $validated = $validator->validate();
+
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->avatar = $request->avatar;
         $user->introduce = $request->introduce;
 
-        // /storage/public/imagesが作成される
-        $file_path = $request->avatar->store('public/images');
-        // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
-        $file_name = str_replace('public/images', '', $file_path);
-        // $file_nameをDBに保存
-        $user->avatar = $file_name;
+        if ($request->avatar == null){
 
+            // avatarが選択されていない場合
 
+        } else {
+            // /storage/public/imagesが作成される
+            $file_path = $request->avatar->store('public/images');
+            // public/imageshogehogeoghoe.jpgみたいな名前になるので、storage/images/を消す
+            $file_name = str_replace('public/images', '', $file_path);
+            // $file_nameをDBに保存
+            $user->avatar = $file_name;
+        }
 
         $user->save();
 
-
-        return redirect("user");
+        return redirect("user")->with(['validated'=>$validated]);
     }
 
 }

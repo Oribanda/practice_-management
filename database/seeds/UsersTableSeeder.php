@@ -1,8 +1,6 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,14 +11,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'testuser',
-            'email' => 'testuser@example.com',
-            'password' => bcrypt('testuser0123'),
-            'avatar' => 'noImage.png',
-            'introduce' => 'こんにちわ',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // テーブルのクリア
+        DB::table('users')->truncate();
+
+        // 初期データ用意（列名をキーとする連想配列）
+        $users = [
+            [
+                'name' => 'testUser',
+                'email' => 'testUser@testUser.com',
+                'password' => 'ssss5555',
+                'avatar' => 'noimage.png',
+                'introduce' => 'これから練習頑張ります！'
+            ]
+        ];
+
+        foreach ($users as $user) {
+            \App\Models\User::create($user);
+        }
     }
 }
