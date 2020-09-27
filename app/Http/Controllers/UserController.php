@@ -35,7 +35,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->introduce = $request->introduce;
+        // $user->introduce = $request->introduce;
 
         $rules = [
             'name'       => 'required|string|max:50',
@@ -43,7 +43,7 @@ class UserController extends Controller
             'password'   => 'required|confirmed|min:8|max:8|confirmed',
             'password_confirmation' => 'required',
             'avatar'     => 'nullable|file|image|max:10000',
-            'introduce'  => 'nullable|string|max:300',
+            // 'introduce'  => 'nullable|string|max:300',
         ];
 
         $messages = [
@@ -57,7 +57,7 @@ class UserController extends Controller
             'confirmed'         => ':attributeと、パスワードが一致していません。',
             'avatar.image'            => 'アバターは:imageを選択して下さい。',
             'avatar.max'            => 'アバターは:max以下の画像ファイルを選択して下さい。',
-            'introduce.max'     => '文章は:max文字以内で入力して下さい。',
+            // 'introduce.max'     => '文章は:max文字以内で入力して下さい。',
         ];
 
         $validator = validator($request->except(['avatar']), $rules, $messages);
@@ -97,7 +97,7 @@ class UserController extends Controller
             'password_confirmation'   => 'required',
             // 'avatar'                  => 'nullable|file|image|max:10M',
             'avatar'                  => 'required|file|mimes:jpeg,png,jpg|max_size:10M',
-            'introduce'               => 'nullable|string|max:300',
+            // 'introduce'               => 'nullable|string|max:300',
         ];
 
         $messages = [
@@ -114,7 +114,7 @@ class UserController extends Controller
             'avatar.mimes'            => '画像はjpeg,png,jpgのいずれかの画像を選択して下さい。',
             'avatar.uploaded'         => '選択されたアバターは画像ファイルではありません。',
             'avatar.max_size'         => '画像は:max以下の画像ファイルを選択して下さい。',
-            'introduce.max'           => '文章は:max文字以内で入力して下さい。',
+            // 'introduce.max'           => '文章は:max文字以内で入力して下さい。',
         ];
 
         $validator = validator($request->except(['avatar','$data']), $rules, $messages);
@@ -125,7 +125,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->introduce = $request->introduce;
+        // $user->introduce = $request->introduce;
 
         if ($request->avatar == null){
 

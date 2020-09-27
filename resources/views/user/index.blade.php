@@ -18,7 +18,6 @@
                     <th class="text-center">名前</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">アバター</th>
-                    <th class="text-center">自己紹介</th>
                 </tr>
                 @foreach($users as $user)
                 <tr>
@@ -28,7 +27,6 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td><img src="../../../storage/images/{{ $user->avatar }}" width="200" height="130"></td>
-                    <td>{{ $user->introduce }}</td>
                     <td>
                         <form action="/user/{{ $user->id }}" method="post">
                             <input type="hidden" name="_method" value="DELETE">

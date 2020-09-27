@@ -29,10 +29,6 @@
                         <input type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
                     </div>
                     <div class="form-group">
-                        <label for="introduce">自己紹介</label>
-                        <input type="text" class="form-control" name="introduce" value="{{ $user->introduce }}">
-                    </div>
-                    <div class="form-group">
                         <label for="password">パスワード</label>
                         <input type="password" class="form-control" name="password" value="{{ $user->password }}">
                     </div>
