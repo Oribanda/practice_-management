@@ -7,7 +7,7 @@
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="ops-title">ユーザー一覧</h3>
+            <h3 class="ops-title">マイページ</h3>
         </div>
     </div>
     <div class="row">
